@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 
@@ -16,7 +15,7 @@ export function Header() {
 
 function MyForm() {
   const [emailBody, setEmailBody] = useState("");
-
+  console.log(emailBody);
   return (
     <div className="row">
       <div className=" col-9 mx-auto">
