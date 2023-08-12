@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import { callAPI } from "./controller";
+import { callAPI, AppI } from "./controller";
 
 export function Header() {
   return (
@@ -65,10 +65,11 @@ function App() {
     <div className="App container">
       <Header />
       <MyForm />
+
+      <AppI />
       <ResponseArea />
     </div>
   );
 }
 
 export default App;
-
