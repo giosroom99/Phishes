@@ -10,7 +10,7 @@ class MyComponent extends Component {
   }
 
   callAPI = (emailBody) => {
-    const url = "http://localhost:5000/check-email";
+    const url = "https://giosroom.pythonanywhere.com/check-email";
 
     fetch(url, {
       method: "POST",
