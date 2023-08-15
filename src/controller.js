@@ -1,51 +1,46 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 
-export async function callAPI() {
-  const url = "http://localhost:5000/check-email";
-  const data = "Subject: naturally irresistible your corporate...#	";
-
-  const response = await axios.post(url, data, {
-    headers: {
-      "Content-Type": "text/plain",
-    },
-  });
-
-  if (response.status === 200) {
-    const responseData = await response.data;
-    alert("API Response: " + responseData);
-  } else {
-    alert("Error calling API: " + response.status);
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      responseText: "", // To store the API response text
+    };
   }
-}
 
-export const AppI = () => {
-  const [data, setData] = useState("");
-
-  const handleClick = () => {
+  callAPI = () => {
     const url = "http://localhost:5000/check-email";
-    const data = "Subject: naturally irresistible your corporate...#	";
+    const data = "Subject: naturally irresistible your corporate...#";
 
-    axios
-      .post(url, data, {
-        headers: {
-          "Content-Type": "text/plain",
-        },
+    fetch(url, {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    })
+      .then((response) => response.json()) // Parse the JSON response
+      .then((result) => {
+        const cleanedData = result.cleaned_data; // Extract cleaned_data from the response
+        this.setState({ responseText: cleanedData }); // Update the component's state
       })
-      .then((response) => {
-        if (response.status === 200) {
-          alert(response.data);
-          setData(response.data);
-        } else {
-          alert("Error calling API: " + response.status);
-        }
+      .catch((error) => {
+        console.error("Error:", error);
       });
   };
 
-  return (
-    <div>
-      <button onClick={handleClick}>Call API</button>
-      <div>{data}</div>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div>
+        <button onClick={this.callAPI}>Call API</button>
+        <div>
+          <p>API Response:</p>
+          <pre>{this.state.responseText}</pre>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default MyComponent;

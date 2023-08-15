@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import { callAPI, AppI } from "./controller";
+import MyComponent from "./controller";
 
 export function Header() {
   return (
@@ -30,11 +30,7 @@ function MyForm() {
               rows="3"
               onChange={(e) => setEmailBody(e.target.value)}
             ></textarea>
-            <button
-              className="btn btn-primary m-3"
-              type="submit"
-              onClick={() => callAPI()}
-            >
+            <button className="btn btn-primary m-3" type="submit">
               Check
             </button>
           </div>
@@ -66,7 +62,7 @@ function App() {
       <Header />
       <MyForm />
 
-      <AppI />
+      <MyComponent />
       <ResponseArea />
     </div>
   );
