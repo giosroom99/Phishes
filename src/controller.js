@@ -85,15 +85,15 @@ function ResponseArea(props) {
           <div
             className={`alert ${
               Spam ? "alert-danger" : "alert-success"
-            } fw-bold fs-4`}
+            } fw-bold fs-6`}
             role="alert"
           >
             Is this a spam: {Spam.toString()}
           </div>
-          <div className="alert alert-primary fw-bold fs-4" role="alert">
+          <div className="alert alert-primary fw-bold fs-6" role="alert">
             Confidence rate: {Confidence_rate}
           </div>
-          <div className="alert alert-primary fw-bold fs-4" role="alert">
+          <div className="alert alert-primary fw-bold fs-6" role="alert">
             Accuracy rate: {Accuracy_rate}
           </div>
         </div>
