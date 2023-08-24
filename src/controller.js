@@ -10,7 +10,7 @@ class MyComponent extends Component {
   }
 
   callAPI = (emailBody) => {
-    const url = "https://giosroom.pythonanywhere.com/check-email";
+    const url = "http://127.0.0.1:5000/check-email";
 
     fetch(url, {
       method: "POST",
@@ -74,27 +74,40 @@ function ResponseArea(props) {
     return null; // If no response, don't render anything
   }
 
-  const { Spam, Confidence_rate, Accuracy_rate } = response;
+  const { label, probability_spam, probability_not_spam, email } = response;
 
   console.log(response);
 
   return (
     <div className="container m-3">
       <div className="row">
-        <div className="col-5 mx-auto">
-          <div
-            className={`alert ${
-              Spam ? "alert-danger" : "alert-success"
-            } fw-bold fs-6`}
-            role="alert"
-          >
-            Is this a spam: {Spam.toString()}
-          </div>
-          <div className="alert alert-primary fw-bold fs-6" role="alert">
-            Confidence rate: {Confidence_rate}
-          </div>
-          <div className="alert alert-primary fw-bold fs-6" role="alert">
-            Accuracy rate: {Accuracy_rate}
+        <div className="col-8 mx-auto ">
+          <div class="card" style={{ width: "auto" }}>
+            <div class="card-body">
+              <h5 class="card-title">Your Email</h5>
+              <p class="card-text">{email}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Probability email is spam: {probability_spam}%
+              </li>
+              <li class="list-group-item">
+                Probability email is not spam: {probability_not_spam}%
+              </li>
+              <li class="list-group-item">
+                {" "}
+                Is this a spam: {label.toString()}
+              </li>
+            </ul>
+            <div class="card-body">
+              <p> Are you statisfy with results?</p>
+              <a href="#" class="card-link">
+                YES
+              </a>
+              <a href="#" class="card-link">
+                NO
+              </a>
+            </div>
           </div>
         </div>
       </div>
