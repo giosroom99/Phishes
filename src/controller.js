@@ -77,7 +77,8 @@ function ResponseArea(props) {
     return null; // If no response, don't render anything
   }
 
-  const { label, probability_spam, probability_not_spam, email } = response;
+  var { label, probability_spam, probability_not_spam, email } = response;
+  email = email.length > 50 ? `${email.slice(0, 300)}...` : email;
 
   console.log(response);
 
@@ -104,10 +105,10 @@ function ResponseArea(props) {
             </ul>
             <div class="card-body">
               <p> Are you statisfy with results?</p>
-              <a href="#" class="card-link">
+              <a href="http://127.0.0.1:5000/check-email" class="card-link">
                 YES
               </a>
-              <a href="#" class="card-link">
+              <a href="http://127.0.0.1:5000/check-email" class="card-link">
                 NO
               </a>
             </div>
