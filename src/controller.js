@@ -11,21 +11,24 @@ class MyComponent extends Component {
 
   callAPI = (emailBody) => {
     const url = "http://127.0.0.1:5000/check-email";
-
-    fetch(url, {
-      method: "POST",
-      body: emailBody, // Use the email body from the form
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        this.setState({ response: result }); // Store the entire response object
+    if (emailBody !== "") {
+      fetch(url, {
+        method: "POST",
+        body: emailBody, // Use the email body from the form
+        headers: {
+          "Content-Type": "text/plain",
+        },
       })
-      .catch((error) => {
-        alert("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((result) => {
+          this.setState({ response: result }); // Store the entire response object
+        })
+        .catch((error) => {
+          alert("Error:", error);
+        });
+    } else {
+      alert("Enter an email");
+    }
   };
 
   handleSubmit = (e) => {
