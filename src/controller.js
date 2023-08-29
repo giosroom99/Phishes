@@ -39,7 +39,7 @@ class MyComponent extends Component {
   render() {
     return (
       <div>
-        <div className="col-9 mx-auto">
+        <div className="col-8 mx-auto">
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label
